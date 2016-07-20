@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../js/util/fabric.js"></script>
+</head>
+<body>
+	<canvas id="c" style="border:1px solid red" width="500" height="500"></canvas>
+	<button id="lnkDownload">点我</button>
+</body>
+<script type="text/javascript">
+	var canvas=new fabric.Canvas("c");
+    var img = new Image(); 
+    img.setAttribute('crossOrigin', 'anonymous'); 
+    img.src = "../images/circle.jpg";
+	fabric.Image.fromURL(img.src, function (oImg) {
+            oImg.set({
+            	crossOrigin:"anonymous",
+                left: 0,
+                top: 0,
+                
+            });
+            canvas.add(oImg);
+        });
+	function saveImage(e) {
+        console.log("1");
+    this.href = canvas.toDataURL({
+
+        format: 'png',
+        quality: 0.8
+    });
+    this.download = 'canvas.png'
+}
+var imageSaver = document.getElementById('lnkDownload');
+imageSaver.addEventListener('click', saveImage, false);
+</script>
+</html>

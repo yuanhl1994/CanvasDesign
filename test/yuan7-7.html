@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/util/fabric.js"></script>
+</head>
+<body>
+  <canvas id="c" width="600" height="600" style="border:1px solid red"></canvas>
+</body>
+<script type="text/javascript">
+ (function() {
+  var canvas = this.__canvas = new fabric.Canvas('c');
+  fabric.Object.prototype.transparentCorners = false;
+
+  function loadPattern(url) {
+    fabric.util.loadImage(url, function(img) {
+      path.fill = new fabric.Pattern({
+        source: img,
+        /*repeat: document.getElementById('repeat').value*/
+      });
+      canvas.renderAll();
+    });
+  }
+
+  var path = new fabric.Path('m194.65749,152.25999c33.95913,-80.93749 167.0121,0 0,104.06249c-167.0121,-104.06249 -33.95913,-184.99998 0,-104.06249z');
+  path.set({
+    left: path.width/2,
+    top: path.height/2,
+    fill: '#fff',
+    stroke:'black',
+    
+  });
+  canvas.add(path);
+
+  loadPattern('../js/images/1.jpg');
+
+  /*document.getElementById('patterns').onchange = function() {
+    loadPattern('../assets/' + this.value);
+  };
+  document.getElementById('repeat').onchange = function() {
+    text.fill.repeat = this.value;
+    canvas.renderAll();
+  };*/
+})();
+</script>
+</html>

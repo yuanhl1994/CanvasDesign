@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../js/util/fabric.js"></script>
+</head>
+<body>
+	<canvas id="c" width="600" height="600" style="border:1px solid red"></canvas>
+</body>
+    <script type="text/javascript">
+        (function() {
+  var canvas = this.__canvas = new fabric.Canvas('c');
+  fabric.Object.prototype.transparentCorners = false;
+
+  var padding = 0;
+
+  fabric.Image.fromURL('../images/1.jpg', function(img) {
+
+    img.scaleToWidth(100);
+
+    var patternSourceCanvas = new fabric.StaticCanvas();
+    patternSourceCanvas.add(img);
+
+    var pattern = new fabric.Pattern({
+      source: function() {
+/*        patternSourceCanvas.setDimensions({
+          width: img.getWidth() + padding,
+          height: img.getHeight() + padding
+        });*/
+        return patternSourceCanvas.getElement();
+      },
+      repeat: 'repeat'
+    });
+
+    canvas.add(new fabric.Polygon([
+      {x: 185, y: 0},
+      {x: 250, y: 100},
+      {x: 385, y: 170},
+      {x: 0, y: 245} ], {
+        left: 0,
+        top: 200,
+        angle: -30,
+        fill: pattern
+      }))
+    })
+  })();
+    </script>
+</html>

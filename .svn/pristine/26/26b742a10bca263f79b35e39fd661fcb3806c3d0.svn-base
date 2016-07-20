@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../js/util/fabric.js"></script>
+	<script type="text/javascript" src="../js/util/jquery-2.1.4.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/canvasEditor/actionBox.css">
+	<script type="text/javascript" src="../js/canvasEditor/actionBox.js"></script>
+</head>
+<body>
+	<canvas id="c" width="800" height="800" style="border:1px solid red"></canvas>
+</body>
+<script type="text/javascript">
+	var canvas = new fabric.Canvas('c');
+
+fabric.Image.fromURL('../images/circle.jpg', function(oImg) {
+	oImg.set({
+		left:150,
+		top:150
+	});
+        canvas.add(oImg);
+    });
+fabric.Image.fromURL('../images/triangle.png', function(oImg) {
+	oImg.set({
+		left:150,
+		top:150
+	});
+        canvas.add(oImg);
+    });
+   actionBox(canvas);
+</script>
+</html>

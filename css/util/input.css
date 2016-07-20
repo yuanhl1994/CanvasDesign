@@ -1,0 +1,185 @@
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 0;
+  width: 90%;
+  margin-left: 4px;
+  height: 24px;
+  background: inherit;
+}
+input[type=range]:focus {
+  outline: none;
+}
+
+/*WEBKIT*/
+/*轨道*/
+input[type=range]::-webkit-slider-runnable-track{
+  width: 90%;
+  height: 2px;
+  cursor: pointer;
+  animate: 0.2s;
+  /* box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; */
+  background: #bbb;
+/*   border-radius: 1.3px;
+border: 0.2px solid #010101; */
+  margin-left: 4px;
+}
+.bod .menu .btn_0 .zoom_div input[type=range]::-webkit-slider-runnable-track{
+  width: 90%;
+  height: 2px;
+  cursor: pointer;
+  animate: 0.2s;
+  /* box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; */
+  background: #fff;
+/*   border-radius: 1.3px;
+border: 0.2px solid #010101; */
+  margin-left: 4px;
+}
+/*滑块*/
+input[type=range]::-webkit-slider-thumb {
+  /* box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000; */
+  height: 15px;
+  width: 15px;
+   border-radius: 20px; 
+  background: #62c7d3;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+  margin-left: 4px;
+}
+input[type=range]::-webkit-slider-thumb {
+  /* box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000; */
+  height: 15px;
+  width: 15px;
+   border-radius: 20px; 
+  background:rgb(245,96,76);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+  margin-left: 4px;
+}
+
+.bod .menu .btn_0 .zoom_div input[type=range]::-webkit-slider-thumb{
+height: 15px;
+  width: 15px;
+   border-radius: 0px; 
+  background:url(../../images/mipmap-xhdpi/a.png) no-repeat;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
+  margin-left: 4px;
+}
+
+
+input[type=range]:focus::-webkit-slider-runnable-track{
+  /*background: #367ebd;*/
+}
+
+/*MOZ*/
+input[type=range]::-moz-range-track {
+  width: 90%;
+  height: 2px;
+  cursor: pointer;
+  animate: 0.2s;
+ /*  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; */
+  background: #bbb;
+ /*  border-radius: 1.3px;
+ border: 0.2px solid #010101; */
+  margin-left: 4px;
+}
+/*滑块*/
+input[type=range]::-moz-range-thumb {
+  border: none;
+  height: 15px;
+  width: 15px;
+/*   border-radius: 1.3px; */
+  background:rgb(245,96,76);
+  cursor: pointer;
+  margin-left: 4px;
+}
+.bod .menu .btn_0 .zoom_div input[type=range]::-moz-range-track {
+  width: 90%;
+  height: 2px;
+  cursor: pointer;
+  animate: 0.2s;
+ /*  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; */
+  background: #fff;
+ /*  border-radius: 1.3px;
+ border: 0.2px solid #010101; */
+  margin-left: 4px;
+}
+.bod .menu .btn_0 .zoom_div input[type=range]::-moz-range-thumb{
+  height: 15px;
+  width: 15px;
+   border-radius: 0px; 
+  background:url(../../images/mipmap-xhdpi/a.png) no-repeat;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
+  margin-left: 4px;
+}
+
+
+/*MS*/
+input[type=range]::-ms-track {
+  width: 90%;
+  height: 1px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0; 
+  color: transparent;
+  margin-left: 4px;
+  margin-top: -4px;
+}
+input[type=range]::-ms-fill-lower {
+  background:  #bbbbbb;
+  border: 1px solid #bbbbbb;
+  border-radius: 0.6px;
+  /* box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;  */
+  margin-left: 4px;
+}
+input[type=range]::-ms-fill-upper {
+  background:  #bbbbbb;
+  border: 1px solid #bbbbbb; 
+  border-radius: 0.6px;
+  /* box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;  */
+  margin-left: 4px;
+}
+/*滑块*/
+input[type=range]::-ms-thumb {
+  border: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 20px;
+  background: rgb(245,96,76); 
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: rgb(245,96,76);
+  border:1px solid rgb(245,96,76);
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #bbbbbb;
+}
+
+.bod .menu .btn_0 .zoom_div input[type=range]::-ms-thumb {
+  border: none;
+  border-radius: 0;
+  height: 15px;
+  width: 15px;
+  background: url(../../images/mipmap-xhdpi/a.png) no-repeat; 
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.bod .menu .btn_0 .zoom_div input[type=range]:focus::-ms-fill-upper,
+input[type=range]:focus::-ms-fill-lower,input[type=range]::-ms-fill-lower,
+input[type=range]::-ms-fill-upper{
+  background: #fff;
+  border: 1px solid #fff;
+}

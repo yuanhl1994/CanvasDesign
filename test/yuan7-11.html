@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../js/util/fabric.js"></script>
+</head>
+<body>
+	<canvas id="c" width="600" height="600" style="border:1px solid red"></canvas>
+</body>
+<script type="text/javascript">
+	(function() {
+  var canvas = new fabric.Canvas('c');
+  fabric.Object.prototype.transparentCorners = false;
+
+  var radius = 300;
+
+  fabric.Image.fromURL('../images/4.jpg', function(img) {
+    img.scale(0.5).set({
+      left: 100,
+      top: 100,
+      angle: -15,
+      clipTo: function (ctx) {
+        /*ctx.moveTo(75,40);*/
+        ctx.moveTo(15, 150);  
+  ctx.lineTo(100,140);  
+  ctx.lineTo(170,90);  
+  ctx.lineTo(230,140);  
+  ctx.lineTo(315,150);  
+  ctx.lineTo(230,200);  
+  ctx.lineTo(300,263);  
+  ctx.lineTo(170,233);  
+  ctx.lineTo(30,263);  
+  ctx.lineTo(100,200); 
+      }
+    });
+    canvas.add(img).setActiveObject(img);
+  });
+
+ /* (function animate() {
+    fabric.util.animate({
+      startValue: Math.round(radius) === 50 ? 50 : 300,
+      endValue: Math.round(radius) === 50 ? 300 : 50,
+      duration: 1000,
+      onChange: function(value) {
+        radius = value;
+        canvas.renderAll();
+      },
+      onComplete: animate
+    });
+  })();*/
+})();
+</script>
+</html>

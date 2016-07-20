@@ -1,0 +1,708 @@
+/**
+ * 编辑器主体布局js
+ */
+
+/**
+ * 在页面生成编辑器的布局
+ */
+
+
+//创建下方浏览区域的div
+function addViewdiv(j, dName, cName) {
+	for (var i = 1; i <= j; i++) {
+		var div = "<div class='edd'></div>";
+		var can = "<canvas></canvas>";
+		var span = "<span></span>"
+		$(".million").append(div);
+		$("div.edd:last").attr("id", dName + "_" + i);
+		$("div.edd:last").append(can);
+		$("canvas.can:last").attr("id", cName + "_" + i);
+		$("div.edd:last").append(span);
+	}
+}
+
+function slider() {
+	var milWith = $(".million").width();
+	$eddId = $(".edd");
+	var num = $eddId.length;
+	// num = parseFloat(num);
+	if (milWith < (num * 92 + 200)) {
+		var newMilWith = num * 92 + 92;
+		$(".million").css("width", newMilWith + "px");
+		$(".edd").css("marginTop", "9px");
+	} 
+};
+
+function addPicOn() {
+	$(".addPic_btn").attr("src", "../images/mipmap-xhdpi/add_picture.png");
+
+}
+
+function addPicOut() {
+	$(".addPic_btn").attr("src", "../images/mipmap-xhdpi/add_picture_click.png");
+}
+
+/**
+ *
+ * @param boole: true：表示有添加按钮，可添加， false：表示不可添加 ，无添加符号
+ */
+function pagingContainer(boole) {
+	$(".view,.yemian").show();
+	var edHei = $(window).height();
+	var ediHeiVie = edHei - 132;
+	$(".edit_center").css("height", ediHeiVie);
+	$("#edit").css("height", "80%");
+	if (!boole) {
+		$(".puls").hide();
+	}
+}
+
+//分页
+function pagging(className,totalNum, prePageNum) {
+	//totalNum 总数
+	//prePageNum 每页放多少个
+	//className 外层DIV的class
+	var pageNUm = Math.ceil(totalNum / prePageNum);
+	if (pageNUm > 7) {
+		for (var i = 1; i <= 7; i++) {
+			var spa = "<span class='pageNum'></span>";
+			$("."+className).append(spa);
+			$("."+className).find(".pageNum:last").text(i);
+		}
+		$("."+className).find(".pageNum:last").after("<span class='omit'>...</span>");
+		$(".omit").after(spa);
+		$("."+className).find(".pageNum:last").text(pageNUm);
+	} else {
+		for (var i = 1; i <= pageNUm; i++) {
+			var spa = "<span class='pageNum'></span>";
+			$("."+className).append(spa);
+			$("."+className).find(".pageNum:last").text(i);
+		}
+	}
+}
+$(document).ready(function() {
+	pagging("numPage",10, 1);
+	pagging("FNumPage",5,1);
+	// $(".pageNum").click(function() {
+	// 	var num = $(this).text();
+
+	// });
+});
+
+$(document).ready(function() {
+	//左边栏 新
+	$(".leftBtn").click(function() {
+		var arr = new Array();
+		arr[0] = $(".template_div");
+		arr[1] = $(".background_div");
+		arr[2] = $(".decoration_div");
+		arr[3] = $(".frame_div");
+		arr[4] = $(".maskingout_div");
+		arr[5] = $(".addPic_div");
+		if ($(this).next().is(":hidden")) {
+			for (var i = 0; i <= 5; i++) {
+				var imgSrc = "../images/mipmap-xhdpi/up.png";
+				arr[i].prev().find("img").attr("src", imgSrc);
+				$(".leftDiv").hide();
+			}
+			$(this).next().slideToggle(500);
+			$(this).find("img").attr("src", "../images/mipmap-xhdpi/down.png");
+			$(".leftBtn").css({
+				"color": "black",
+				"background-color": "#fff",
+			});
+			$(this).css({
+				"color": "white",
+				"background-color": "#f5604c",
+			});
+			
+
+		} else {
+			$(this).next().slideToggle(500);
+			$(this).find("img").attr("src", "../images/mipmap-xhdpi/up.png");
+			$(this).css({
+				"color": "black",
+				"background-color": "#fff",
+			});
+		}
+
+	});
+	$(document).ready(function() {
+		var winHei = $(window).height();
+		var lDHei = winHei - 250;
+		var pFHei = lDHei - 50 ;
+		var mOHei = lDHei - 50;
+		$(".leftDiv").css("height", lDHei + "px");
+		$(".picFrame").css("height",pFHei + "px");
+		$(".maskingOut").css("height",mOHei + "px");
+	});
+	$(window).resize(function() {
+		var winHei = $(window).height();
+		var lDHei = winHei - 250;
+		var pFHei = lDHei - 50 ;
+		var mOHei = lDHei - 50;
+		$(".leftDiv").css("height", lDHei + "px");
+		$(".picFrame").css("height",pFHei + "px");
+		$(".maskingOut").css("height",mOHei + "px");
+	});
+
+	//模态框
+	$(".btn-lg").click();
+	$(".btn").click(function() {
+		$(this).css({
+			"background-color": "#f5604c",
+			"color": "white",
+		});
+		$(this).siblings().css({
+			"background-color": "#eeeeee",
+			"color": "black",
+		});
+	});
+	$(".mod_1").click(function() {
+		$(".kindChos").show();
+		$(".chooseTem").hide();
+	});
+	$(".mod_2").click(function() {
+		$(".kindChos").hide();
+		$(".chooseTem").show();
+	});
+	$(".kind").find("div").click(function() {
+		$(this).css({
+			"background-image": "url(../images/mipmap-xhdpi/jump_line_click.png)",
+			"background-color": "#f5604c",
+			"color": "white",
+		});
+		$(this).siblings().css({
+			"background-image": "url(../images/mipmap-xhdpi/jump_line.png)",
+			"background-color": "white",
+			"color": "black",
+		});
+	});
+	$(".creatDirect").click(function() {
+		$("#edit").css("height", "80%");
+		blank_puzzle();
+		// console.log("1");
+	});
+	//选择模板控制中间下方区域出现
+	$(".mod_1").click(function() {
+		$(".view,.yemian").hide();
+		var edcH = $(window).height() - 36;
+		$(".edit_center").css("height", edcH + "px");
+	});
+	$(".modal_btn").click(function() {
+		$(".view,.yemian").hide();
+		var edHei = $(window).height();
+		var ediHei = edHei - 32;
+		$(".edit_center").css("height", ediHei);
+		$("#edit").css("height", "92%");
+		$(".modal-header").hide();
+		$(".modal-footer").show();
+		$(".modal-body").hide();
+	})
+
+
+	$(window).bind("beforeunload", function() {
+		return 1;
+	});
+	//禁用模态框点击空白消失
+	$('#myModal').modal({
+		backdrop: 'static',
+		keyboard: false
+	});
+	//中间编辑区域高度
+	$(document).ready(function() {
+		var edHei = $(window).height();
+		var ediHei = edHei - 32;
+		var ediHeiVie = edHei - 132;
+		if ($(".view,.yemian").is(":hidden")) {
+			$(".edit_center").css("height", ediHei);
+		} else {
+			$(".edit_center").css("height", ediHeiVie);
+		}
+	});
+	$(window).resize(function() {
+		var edHei = $(window).height();
+		var ediHei = edHei - 32;
+		var ediHeiVie = edHei - 132;
+		if ($(".view,.yemian").is(":hidden")) {
+			$(".edit_center").css("height", ediHei);
+		} else {
+			$(".edit_center").css("height", ediHeiVie);
+
+		}
+	});
+
+
+
+	//右边栏菜单伸缩
+	$(".r_tools").find($(".r_t_c")).click(function() {
+		var arr = new Array();
+		arr[0] = $(".base_div");
+		arr[1] = $(".font_div");
+		arr[2] = $(".pic_div");
+		arr[3] = $(".print_div");
+
+		if ($(this).next().is(":hidden")) {
+			for (var i = 0; i <= 3; i++) {
+				var imgSrc = "../images/mipmap-xhdpi/up.png";
+				arr[i].prev().find("img").attr("src", imgSrc);
+				$(".base_div").hide();
+				$(".font_div").hide();
+				$(".pic_div").hide();
+				$(".print_div").hide();
+
+			}
+			$(this).next().slideToggle(500);
+			$(this).find("img").attr("src", "../images/mipmap-xhdpi/down.png");
+			$(".r_t_c").css({
+				"color": "black",
+				"background-color": "white",
+			});
+			$(this).css({
+				"color": "white",
+				"background-color": "#f5604c",
+			});
+		} else {
+			$(this).next().slideToggle(500);
+			$(this).find("img").attr("src", "../images/mipmap-xhdpi/up.png");
+			$(this).css({
+				"color": "black",
+				"background-color": "white",
+			});
+		}
+	});
+	//右边栏子菜单高度
+	$(document).ready(function() {
+		var wHei = $(window).height();
+		var rtcd = wHei * 0.5 - 143;
+		$(".r_t_cDiv").css("height", rtcd + "px");
+	});
+	$(window).resize(function() {
+		var wHei = $(window).height();
+		var rtcd = wHei * 0.5 - 143;
+		$(".r_t_cDiv").css("height", rtcd + "px");
+	});
+	// 添加字体
+	$("#btn_font").click(function() {
+		$("#ul_fontFam").slideToggle();
+	});
+	$(".li_fontFam").click(function() {
+		var li_this = $(this);
+		$("#btn_font").val($(li_this).text());
+		var id_this = $(li_this).attr("id");
+		$("#btn_font").removeClass().addClass(id_this);
+		// console.log(id_this);
+		$("#ul_fontFam").hide();
+		canvas.getActiveObject().setFontFamily($(this).attr("id"));
+		console.log("1");
+		canvas.renderAll();
+		console.log("2");
+	});
+
+	// mid的宽度
+	$(document).ready(function() {
+		var midWith = $(window).width() - 400;
+		var mar = midWith * 0.25 * 0.5 - 53;
+		var leftHei = $(".left").height() - 32;
+		$(".mid").css("width", midWith);
+		$(".leftPage").css("margin-left", mar + "px");
+		$(".rightPage").css("margin-right", mar + "px");
+		$(".left_center").css("height", leftHei);
+
+	});
+	$(window).resize(function() {
+		var midWith = $(window).width() - 400;
+		var mar = midWith * 0.25 * 0.5 - 53;
+		var leftHei = $(".left").height() - 32;
+		$(".mid").css("width", midWith);
+		$(".leftPage").css("margin-left", mar + "px");
+		$(".rightPage").css("margin-right", mar + "px");
+		$(".left_center").css("height", leftHei);
+	});
+
+	//下部浏览区域
+
+	$(window).resize(function() {
+		if($(".million").is(":hidden") == false){
+			var milWith = $(".million").width();
+			var eddId = $(".million").find(".edd:last").attr("id");
+			var num = eddId.split("_").slice(-1);
+			num = parseFloat(num);
+			if (milWith < num * 85) {
+				var newMilWith = milWith + 85;
+				$(".million").css("width", newMilWith + "px");
+			}
+		}
+		
+	});
+	//右边图层区域
+	$(document).ready(function() {
+		var layWid = $(window).height() - 400;
+		$(".r_s_cen").css("height", layWid);
+	});
+	$(window).resize(function() {
+		var layWid = $(window).height() - 400;
+		$(".r_s_cen").css("height", layWid);
+	})
+
+	$(document).on("click", ".eye", function() {
+		$(this).addClass("eye_close");
+		$(".eye_close").parent().css("background-image", "url(../images/mipmap-xhdpi/exit_display.png)");
+	});
+	$(document).on("click", ".eye_close", function() {
+		$(this).removeClass("eye_close");
+		$(this).parent().css("background-image", "url(../images/mipmap-xhdpi/display.png)");
+	});
+
+	$(document).on("click", ".layers", function() {
+		$(this).css("background-color", "#c7c7c7");
+		$(this).siblings().css("background-color", "#d5d5d5");
+
+	});
+	//下方浏览区域点击canvas
+	$(document).on("click", ".edd", function() {
+             
+		
+		var img = "<img class='blue' src='../images/mipmap-xhdpi/orange.png'></img>";
+		$(".blue").remove();
+       
+		$(this).append(img);
+
+	});
+
+
+});
+
+
+
+
+$(function() {
+	var qsState = 0;
+	var dzState = 0;
+
+	$("#discoloration").bind("click", function() {
+		applyFilter(0, !qsState && new f.Grayscale());
+		if (qsState == 0) {
+			$(this).attr("src", "../images/mipmap-xhdpi/check_box_click.png");
+			qsState = 1;
+		} else {
+			$(this).attr("src", "../images/mipmap-xhdpi/check_box.png");
+			qsState = 0;
+		}
+	});
+
+	$("#invert").bind("click", function() {
+		inversion();
+		if (dzState == 0) {
+			$(this).attr("src", "../images/mipmap-xhdpi/check_box_click.png");
+			dzState = 1;
+		} else {
+			$(this).attr("src", "../images/mipmap-xhdpi/check_box.png");
+			dzState = 0;
+		}
+	});
+
+});
+
+//文字，字体字号
+$(document).ready(function() {
+
+
+});
+
+$(function() {
+	var alState = 0;
+	var acState = 0;
+	var arState = 0;
+	$("#alignleft").bind("click", function() {
+		if (alState == 0) {
+			align("left");
+			$(this).attr("src", "../images/mipmap-xhdpi/lift_click.png");
+			$("#aligncenter").attr("src", "../images/mipmap-xhdpi/center.png");
+			$("#alignright").attr("src", "../images/mipmap-xhdpi/right.png");
+			arState = 0;
+			acState = 0;
+			alState = 1;
+		} else {
+			$(this).attr("src", "../images/mipmap-xhdpi/lift.png");
+			alState = 0;
+		}
+	});
+
+	$("#aligncenter").bind("click", function() {
+		if (acState == 0) {
+			align("center");
+			$(this).attr("src", "../images/mipmap-xhdpi/center_click.png");
+			$("#alignleft").attr("src", "../images/mipmap-xhdpi/lift.png");
+			$("#alignright").attr("src", "../images/mipmap-xhdpi/right.png");
+			acState = 1;
+			alState = 0;
+			arState = 0;
+		} else {
+			$(this).attr("src", "../images/mipmap-xhdpi/center.png");
+			acState = 0;
+		}
+	});
+
+	$("#alignright").bind("click", function() {
+		if (arState == 0) {
+			align("right");
+			$(this).attr("src", "../images/mipmap-xhdpi/right_click.png");
+			$("#alignleft").attr("src", "../images/mipmap-xhdpi/lift.png");
+			$("#aligncenter").attr("src", "../images/mipmap-xhdpi/center.png");
+			arState = 1;
+			alState = 0;
+			acState = 0;
+		} else {
+			$(this).attr("src", "../images/mipmap-xhdpi/right.png");
+			arState = 0;
+		}
+	});
+});
+
+// 字体，字号,描边宽度
+$(document).ready(function() {
+	var fontsizeState = 0;
+	var borderWidthState = 0;
+	var fontfamCheck = 0;
+	$(".fontfam").click(function() {
+
+		if (fontfamCheck == 0) {
+			$(this).find("img").attr("src", "../images/mipmap-xhdpi/downs.png");
+			$(".selectFontSize").hide();
+			fontsizeState = 0;
+			$(".selectBorderWidth").hide();
+			borderWidthState = 0;
+			$(".fontcontent").show();
+			fontfamCheck = 1;
+		} else {
+			$(this).find("img").attr("src", "../images/mipmap-xhdpi/up.png");
+			$(".fontcontent").hide();
+			fontfamCheck = 0;
+		}
+	});
+
+	$(".fontsize").bind("click", function() {
+		if (fontsizeState == 0) {
+			$(this).find("img").attr("src", "../images/mipmap-xhdpi/downs.png");
+			$(".selectBorderWidth").hide();
+			borderWidthState = 0;
+			$(".fontcontent").hide();
+			fontfamCheck = 0;
+			$(".selectFontSize").show();
+			fontsizeState = 1;
+			$(".font_div #mCSB_5 #mCSB_5_container").css("top",-50);
+		} else {
+			$(this).find("img").attr("src", "../images/mipmap-xhdpi/up.png");
+			$(".selectFontSize").hide();
+			fontsizeState = 0;
+		}
+
+	});
+
+	$(".options li").click(function() {
+		$(".fontSizeActive").removeClass("fontSizeActive");
+		$(this).addClass("fontSizeActive");
+		$(".selectFontSize").hide();
+		$(".fontsize").find("img").attr("src", "../images/mipmap-xhdpi/up.png");
+		$(".fontsize span").html($(".fontSizeActive").html() + "pt");
+	});
+
+	$(".border_width").bind("click", function() {
+		if (borderWidthState == 0) {
+			$(this).find("img").attr("src", "../images/mipmap-xhdpi/downs.png");
+			$(".selectFontSize").hide();
+			fontsizeState = 0;
+			$(".fontcontent").hide();
+			fontfamCheck = 0;
+			$(".selectBorderWidth").show();
+			borderWidthState = 1;
+			$(".font_div #mCSB_5 #mCSB_5_container").css("top",-100);
+		} else {
+			$(this).find("img").attr("src", "../images/mipmap-xhdpi/up.png");
+			$(".selectBorderWidth").hide();
+			borderWidthState = 0;
+		}
+
+	});
+
+	$(".s_b_w_options li").click(function() {
+		$(".borderWidthActive").removeClass("borderWidthActive");
+		$(this).addClass("borderWidthActive");
+		$(".selectBorderWidth").hide();
+		$(".border_width").find("img").attr("src", "../images/mipmap-xhdpi/up.png");
+		$(".border_width span").html("描边粗细(" + $(".borderWidthActive").html() + "pt)");
+	});
+
+});
+
+
+
+
+$(document).ready(function() {
+	var boldState = 0;
+	var italicState = 0;
+	var underlineState = 0;
+	var strikeState = 0;
+	$("#bold1").bind("click", function() {
+		if (boldState == 0) {
+
+			$(this).attr("src", "../images/mipmap-xhdpi/bold_click.png");
+			boldState = 1;
+		} else {
+			$(this).attr("src", "../images/mipmap-xhdpi/bold.png");
+			boldState = 0;
+		}
+	});
+
+	$("#italic1").bind("click", function() {
+		if (italicState == 0) {
+
+			$(this).attr("src", "../images/mipmap-xhdpi/italic_click.png");
+			italicState = 1;
+		} else {
+			$(this).attr("src", "../images/mipmap-xhdpi/italic.png");
+			italicState = 0;
+		}
+	});
+
+	$("#underline").bind("click", function() {
+		if (underlineState == 0) {
+
+			$(this).attr("src", "../images/mipmap-xhdpi/Underline_click.png");
+			underlineState = 1;
+		} else {
+			$(this).attr("src", "../images/mipmap-xhdpi/Underline.png");
+			underlineState = 0;
+		}
+	});
+
+	$("#strike").bind("click", function() {
+		if (strikeState == 0) {
+
+			$(this).attr("src", "../images/mipmap-xhdpi/strikethrough_click.png");
+			strikeState = 1;
+		} else {
+			$(this).attr("src", "../images/mipmap-xhdpi/strikethrough.png");
+			strikeState = 0;
+		}
+	});
+});
+
+//actionbox 字体
+var abFontFamState = 0;	
+$(document).on("click",".abFontFam_click",function(){
+	if (abFontFamState == 0) {
+		$(".selectabFontFam").show();
+		abFontFamState = 1;
+	}else{
+		$(".selectabFontFam").hide();
+		abFontFamState = 0;
+	}
+	
+});
+
+$(document).on("click",".abFontFamOptions li",function(){
+	$(".abFontFamActive").removeClass("abFontFamActive");
+	$(this).addClass("abFontFamActive");
+	$(".selectabFontFam").hide();
+	$(".abFontFam_click>span:first-child").html($(".abFontFamActive").html());
+	abFontFamState = 0;
+});
+
+//actionbox 字号
+var abFontSizeState = 0;	
+$(document).on("click",".abFontSize_click",function(){
+	if (abFontSizeState == 0) {
+		$(".selectabFontSize").show();
+		abFontSizeState = 1;
+	}else{
+		$(".selectabFontSize").hide();
+		abFontSizeState = 0;
+	}
+	
+});
+
+$(document).on("click",".abFontSizeOptions li",function(){
+	$(".abFontSizeActive").removeClass("abFontSizeActive");
+	$(this).addClass("abFontSizeActive");
+	$(".selectabFontSize").hide();
+	$(".abFontSize_click>span:first-child").html($(".abFontSizeActive").html());
+	abFontSizeState = 0;
+});
+
+//more_frame_box模态框
+$(document).on("click", "#more_frame_img", function() {
+  $('#more_frame_box').modal('show');
+});
+$(document).on("click", ".frame_box_header>span,.FAdd_btn", function() {
+  $('#more_frame_box').modal('hide');
+});
+//选相框
+$(document).on("click", ".frame_model", function() {
+    var span = "<span class='choosed'  style='z-index:1001;position:relative;left:62px;top:-24px;'><img src='../images/mipmap-xhdpi/check_box_circle.png' ></img><span>";
+    $(this).append(span);
+    $(this).addClass("frame_model_active");
+});
+
+$(document).on("click", ".frame_model_active", function() {
+    $(this).removeClass("frame_model_active");
+    $(this).children(".choosed").remove();
+});
+
+//关闭添加画框模态框
+// $(document).ready(function(){
+// 	$(".frame_box_header").find("span").click(function(){
+// 		$(".FNumPage").empty();
+// 	});
+// });
+
+
+//模态框名片相册书日历选择
+$(document).on("click",".kindCard",function(){
+	$("#kind_book").hide();
+	$("#kind_calendar").hide();
+	$("#kind_card").show();
+
+});
+$(document).on("click",".kindBook",function(){
+	$("#kind_card").hide();
+	$("#kind_calendar").hide();
+	$("#kind_book").show();
+});
+$(document).on("click",".kingCan",function(){
+	$("#kind_card").hide();
+	$("#kind_book").hide();
+	$("#kind_calendar").show();
+});
+
+$(document).on("click", ".temView", function() {
+  $('#myModal').modal('hide');
+});
+
+
+/*$(document).on("click", "#kind_card .temView", function() {
+  	blank_card();
+});*/
+$(document).on("click", "#kind_book .temView", function() {
+ 	
+ 	/*$(".view,.yemian").show();
+		var edHei = $(window).height();
+		var ediHeiVie = edHei - 132;
+		$(".edit_center").css("height", ediHeiVie);
+		$("#edit").css("height", "80%");*/
+});
+
+/*$(document).on("click", "#kind_calendar .temView", function() {
+  		blank_menology();
+});
+$(document).on("click", "#kind_calendar .temView", function() {
+  		blank_menology();
+});*/
+
+/*
+var fts = document.getElementsByClassName("fontsize");
+fts.onclick() = function(){
+	alert("1");
+}*/
+

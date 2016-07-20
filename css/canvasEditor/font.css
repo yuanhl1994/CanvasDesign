@@ -1,0 +1,79 @@
+@font-face{
+  font-family: "li";
+src: url("../fonts/MicrosoftBlack.ttf") format("truetype"); 
+
+}
+@font-face{
+  font-family: "cuSong";
+src: url("../fonts/cuSong.ttf") format("truetype"); 
+}
+@font-face{
+  font-family: "black";
+src: url("../fonts/black.ttf") format("truetype"); 
+};
+/* @font-face{
+  font-family: "kai";
+src: url("../fonts/xingkai.ttf") format("truetype"); 
+}; */
+@font-face{
+  font-family: "yuan";
+src: url("../fonts/MFYaYuan_Noncommercial-Regular.otf") format("truetype"); 
+};
+@font-face{
+  font-family: "kai";
+src: url("../fonts/xingkai.ttf") format("truetype"); 
+};
+@font-face{
+  font-family: "cuSong";
+src: url("../fonts/cuSong.ttf") format("truetype"); 
+}
+
+@font-face{
+  font-family: "yiShu_17";
+src: url("../fonts/nicai.TTF") format("truetype"); 
+}
+@font-face{
+  font-family: "yiShu_13";
+src: url("../fonts/yangyang.ttf") format("truetype"); 
+}
+@font-face{
+  font-family: "yiShu_12";
+src: url("../fonts/moe.ttf") format("truetype"); 
+}
+@font-face{
+  font-family: "yiShu_11";
+src: url("../fonts/lingbo.ttf") format("truetype"); 
+}
+
+@font-face{
+  font-family: "art";
+src: url("../fonts/yishu1.ttf") format("truetype"); 
+}
+@font-face{
+  font-family: "yiShu_1";
+  src: url("../fonts/yishu2.ttf") format("truetype");
+}
+@font-face{
+  font-family: "yiShu_2";
+  src: url("../fonts/yishu3.ttf") format("truetype");
+}
+@font-face{
+  font-family: "yiShu_3";
+  src: url("../fonts/yishu4.ttf") format("truetype");
+}
+@font-face{
+  font-family: "yiShu_4";
+  src: url("../fonts/yishu5.ttf") format("truetype");
+}
+@font-face{
+  font-family: "yiShu_5";
+  src: url("../fonts/yishu6.ttf") format("truetype");
+}
+@font-face{
+  font-family: "yiShu_6";
+  src: url("../fonts/tx.ttf") format("truetype");
+}
+@font-face{
+  font-family: "yiShu_7";
+  src: url("../fonts/daiyu.ttf") format("truetype");
+}

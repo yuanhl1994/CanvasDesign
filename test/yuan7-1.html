@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../js/util/fabric.js"></script>
+	<script type="text/javascript" src="../js/util/jquery-2.1.4.js"></script>
+	<script type="text/javascript" src="../js/uplaod/webuploader.js"></script>
+	<script type="text/javascript" src="../js/uplaod/upload_img.js"></script>
+</head>
+<body>
+	<canvas id="test" width="500" height="500" style="border:1px solid red"></canvas>
+	<div id="btn_uploads" >点我</div>
+	<div class="pic_view" id="show_img">
+					<!-- <div class="temDiv">
+						<img src="">
+					</div> -->
+				</div>
+</body>
+<script type="text/javascript">
+    var count=0;
+    var history=0;
+    var src;
+    function time(){
+            if($(".temDiv").length!=count){
+            	console.log("2");
+            	src=$(".temDiv:last").find("img").attr("src");
+            	fabric.Image.fromURL(src,function(oImg){
+        	    oImg.set({
+        	    	width:canvas.getActiveObject().width,
+        	    	height:canvas.getActiveObject().height,
+        	    	left:canvas.getActiveObject().left,
+        	    	top:canvas.getActiveObject().top
+        	    })
+        	    canvas.add(oImg);
+              
+        })
+
+            	history=count;
+            	count++;
+            }
+        };
+	var canvas=new fabric.Canvas("test");
+    fabric.Image.fromURL("../images/1.jpg",function(oImg){
+        oImg.set({
+            left:0,
+            top:0
+        })
+        canvas.add(oImg);
+    })
+	var rect = new fabric.Rect({
+		width: 100,
+		height: 100,
+		top:50,
+		left:50,
+		fill: '#fff',
+		stroke:'black',
+		id:"wo"
+	})
+		rect.hasControls=false;
+		rect.lockMovementX=true;	
+		rect.lockMovementY=true;
+		rect.lockRotation=true;
+		rect.lockScalingX=true;
+		rect.lockScalingY=true;
+       
+       canvas.add(rect);
+       
+
+    canvas.renderAll();
+    fabric.Image.fromURL("../images/1.jpg",function(oImg){
+        oImg.set({
+            left:200,
+            top:200
+        })
+        canvas.add(oImg);
+    })
+       canvas.on("object:selected",function(){
+       	  if(canvas.getActiveObject().id=="wo"){
+       	  	console.log("1");
+       	  	var child=$("#btn_uploads").find("input");
+        child.click();
+        var sh=setInterval(time,500);
+        if(count!=history){
+        	setInterval(sh);
+        }
+}
+       })
+</script>
+</html>

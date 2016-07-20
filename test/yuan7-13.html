@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../js/util/fabric.js"></script>
+	<script type="text/javascript" src="../js/util/caman.full.min.js"></script>
+</head>
+<body>
+	<canvas id="c" width="600" height="600" style="border:1px solid red"></canvas>
+</body>
+    <script type="text/javascript">
+       var canvas=new fabric.Canvas("c");
+      /* fabric.Image.fromURL("../images/1.jpg",function(oImg){
+       	oImg.set({
+       		id:"wo"
+       	})
+       	canvas.add(oImg);
+       })*/
+Caman("#c", "../images/1.jpg", function () {
+  // manipulate image here
+  this.brightness(5).render();
+});
+
+    </script>
+</html>

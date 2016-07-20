@@ -1,0 +1,25 @@
+
+function saveCanvas(){
+    var img=new Array();
+    for (var i=0;i<canvas_array.length;i++){
+        var canvas_img=canvas_array[i].toDataURL({
+            format: 'png',
+            quality: 1
+        });
+        console.log(canvas_img);
+        img[i]=canvas_img;
+    }
+    $.ajax({
+        url:'http://localhost/canvas/qsupload',
+        type:'POST',
+        dataType: 'json',
+        data:{img:img},
+        contentType:"application/x-www-form-urlencoded",
+        success:function (data) {
+            alert(data.message);
+        }
+    });
+}
+$(function(){
+    $("#save-btn").bind("click",function(){saveCanvas();})
+});

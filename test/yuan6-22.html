@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/util/fabric.js"></script>
+    <script type="text/javascript" src="../js/util/jquery-2.1.4.js"></script>
+</head>
+<body>
+    <canvas id="c" style="border:1px solid black" width="599" height="500"></canvas>
+    <input id="width" type="text" oninput="widthChange();"  onpropertychange="widthChange();" onKeyup="widthChange()">
+    <input id="height" type="text" oninput="heightChange();"  onpropertychange="heightChange();" onKeyup="heightChange()">
+    <input id="angle" type="text" oninput="angleChange();"  onpropertychange="angleChange();" onKeyup="angleChange()">
+    <input id="grayscale" type="checkbox" >
+    <input id="inversion" type="checkbox" >
+    <p>
+        <label><span>明度</span> <input type="checkbox" id="brightness"></label>
+        <br>
+        <label>Value: <input type="range" id="brightness-value" value="100" min="-255" max="255"></label>
+    </p>
+    
+</body>
+<script type="text/javascript">
+    var canvas = new fabric.Canvas('c');
+    var filters = ['grayscale', 'invert', 'remove-white', 'sepia', 'sepia2',
+        'brightness', 'noise', 'gradient-transparency', 'pixelate',
+        'blur', 'sharpen', 'emboss', 'tint', 'multiply', 'blend'];
+    f = fabric.Image.filters;
+    fabric.Image.fromURL('../images/1.jpg', function (oImg) {
+    canvas.add(oImg);
+    canvas.renderAll();
+  });
+    function widthChange(){
+        canvas.getActiveObject().setWidth(parseFloat($("#width").val()));
+        canvas.renderAll();
+        /*$("#width").val()*/
+    }
+    function heightChange(){
+        canvas.getActiveObject().setHeight(parseFloat($("#height").val()));
+        canvas.renderAll();
+        /*$("#width").val()*/
+    }
+    function angleChange(){
+        canvas.getActiveObject().setAngle(parseFloat($("#angle").val()));
+        canvas.renderAll();
+        /*$("#width").val()*/
+    }
+    function applyFilter(index, filter) {
+        var obj = canvas.getActiveObject();
+        obj.filters[index] = filter;
+        obj.applyFilters(canvas.renderAll.bind(canvas));
+    }
+
+    function applyFilterValue(index, prop, value) {
+        var obj = canvas.getActiveObject();
+        if (obj.filters[index]) {
+            obj.filters[index][prop] = value;
+            obj.applyFilters(canvas.renderAll.bind(canvas));
+        }
+    }
+    $('#grayscale').click( function() {
+        applyFilter(0, this.checked && new f.Grayscale());
+    });
+    $("#inversion").click(function(){
+        var angle=parseFloat(canvas.getActiveObject().getAngle())+180;
+        canvas.getActiveObject().setAngle(angle);
+        canvas.renderAll();
+    })
+     document.getElementById('brightness').onclick = function () {
+        applyFilter(5, this.checked && new f.Brightness({
+                    brightness: parseInt($('brightness-value').value, 10)
+                }));
+    };
+    document.getElementById('brightness-value').onchange = function() {
+        applyFilterValue(5, 'brightness', parseInt(this.value, 10));
+    };
+
+
+</script>
+</html>

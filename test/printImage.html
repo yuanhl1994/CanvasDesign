@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <script type="text/javascript" src="../js/util/fabric.js"></script>
+    <script type="text/javascript" src="../js/util/jquery-2.1.4.js"></script>
+</head>
+<body>
+    <canvas id="c" width="500" height="500" style="border:1px solid black"></canvas>
+    <input id="width" type="text" oninput="widthChange()"  onpropertychange="widthChange()" onKeyup="widthChange()">	
+</body>
+<script type="text/javascript">
+	var canvas=new fabric.Canvas("c");
+			
+
+var path2 =new fabric.Path('m351.7775,138.58588c0,14.08326 -31.34007,25.50001 -70.00001,25.50001m70.00001,-25.50001l0,0c0,14.08326 -31.34007,25.50001 -70.00001,25.50001c-38.65992,0 -69.99999,-11.41672 -69.99999,-25.50001m0,0l0,0c0,-14.08325 31.34006,-25.5 69.99999,-25.5c38.65994,0 70.00001,11.41675 70.00001,25.5l0,102.00007c0,14.08325 -31.34007,25.49996 -70.00001,25.49996c-38.65992,0 -69.99999,-11.41671 -69.99999,-25.49996l0,-102.00007z');
+
+path2.set({ left: 120, top: 120,fill:'#fff',stroke:'black'});
+
+canvas.add(path2);
+function widthChange(){
+	/*var width=canvas.getActiveObject().width;
+	console.log(width);
+	var scaleWidth=parseInt($("#width").val())/width;
+	console.log(scaleWidth);
+	console.log(typeof scaleWidth)*/
+	canvas.getActiveObject().scaleToWidth(parseInt($("#width").val()));
+	canvas.renderAll();
+}	
+</script>
+</html>
